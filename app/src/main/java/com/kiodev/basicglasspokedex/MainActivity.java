@@ -24,16 +24,11 @@ public class MainActivity extends Activity {
 
     private ArrayList<Card> mCards;
     private CardScrollView mCardScrollView;
-
-    private PokemonTypes mPokemonTypes;
-    private ArrayList<String> mPokemonTypesList;
+    private ArrayList<String> mTypes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mPokemonTypes = new PokemonTypes();
-        mPokemonTypesList = mPokemonTypes.getTypesList();
 
         createCards();
 
@@ -51,6 +46,7 @@ public class MainActivity extends Activity {
 
                 // Kick off new Activity
                 Intent intent = new Intent(MainActivity.this, PokemonDetailActivity.class);
+                intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_TYPE, mTypes.get(position));
                 startActivity(intent);
             }
         });
@@ -69,7 +65,9 @@ public class MainActivity extends Activity {
 
         Card card;
 
-        for(String type : mPokemonTypesList){
+        mTypes = PokemonIndex.get().getTypes();
+
+        for(String type : mTypes){
             card = new Card(this);
             card.setText(type);
             card.setImageLayout(Card.ImageLayout.LEFT);

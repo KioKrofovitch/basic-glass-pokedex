@@ -16,19 +16,26 @@ import java.util.ArrayList;
  */
 public class PokemonDetailActivity extends Activity {
 
+    public static final String TAG = PokemonDetailActivity.class.getSimpleName();
+    public static final String EXTRA_POKEMON_TYPE = "com.kiodev.basicglasspokedex.extraPokemonType";
+
     private ArrayList<Card> mCards;
     private CardScrollView mCardScrollView;
 
-    public static final String TAG = PokemonDetailActivity.class.getSimpleName();
+    private ArrayList<String> mThesePokemon;
+    private String mType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String mType = getIntent().getStringExtra(EXTRA_POKEMON_TYPE);
+        mThesePokemon = PokemonIndex.get().getThesePokemon(mType);
+
         createCards();
 
         mCardScrollView = new CardScrollView(this);
         CustomCardScrollAdapter adapter = new CustomCardScrollAdapter();
-
 
         mCardScrollView.setAdapter(adapter);
 
@@ -43,12 +50,13 @@ public class PokemonDetailActivity extends Activity {
 
         Card card;
 
-        card = new Card(this);
-        card.setText("POKEMON!!");
-        card.setImageLayout(Card.ImageLayout.LEFT);
-        card.addImage(R.drawable.ic_launcher);
-        mCards.add(card);
-
+        for(String pokemon : mThesePokemon) {
+            card = new Card(this);
+            card.setText(pokemon);
+            card.setImageLayout(Card.ImageLayout.LEFT);
+            card.addImage(R.drawable.ic_launcher);
+            mCards.add(card);
+        }
     }
 
     private class CustomCardScrollAdapter extends CardScrollAdapter {
