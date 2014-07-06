@@ -51,19 +51,18 @@ public class PokemonDetailActivity extends Activity {
 
         Log.d(TAG, "Type we seek: " + mType);
 
-        for (String key : PokemonIndex.get().getPokemon().keySet()) {
-            Pokemon pk = PokemonIndex.get().getPokemon().get(key);
+        for (Pokemon pk : PokemonIndex.get().getPokemon().values()) {
             Log.d(TAG, "value type is: " + pk.getType());
             if( pk.getType().equals(mType) ){
                 Log.d(TAG, "Adding " + pk.getName());
                 card = new Card(this);
                 card.setText(pk.getName());
+                card.setFootnote(pk.getNote());
                 card.setImageLayout(Card.ImageLayout.LEFT);
                 card.addImage(pk.getImage());
                 mCards.add(card);
             }
         }
-
     }
 
     private class CustomCardScrollAdapter extends CardScrollAdapter {

@@ -71,7 +71,6 @@ public class MainActivity extends Activity {
             card = new Card(this);
             card.setText(type);
             card.setImageLayout(Card.ImageLayout.LEFT);
-            card.addImage(R.drawable.ic_launcher);
             mCards.add(card);
         }
     }

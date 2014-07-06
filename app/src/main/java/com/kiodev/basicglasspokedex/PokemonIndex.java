@@ -24,21 +24,23 @@ public class PokemonIndex {
 
         // Fire types
         mTypes.add("Fire");
-        mPokemon.put("004", new Pokemon("Charmander", "Fire", R.drawable.charmander));
-        mPokemon.put("005", new Pokemon("Charmeleon", "Fire", R.drawable.charmeleon));
-        mPokemon.put("037", new Pokemon("Vulpix", "Fire", R.drawable.vulpix));
+        //mPokemon.put("004", new Pokemon("Charmander", "Fire", R.drawable.charmander));
+        //mPokemon.put("005", new Pokemon("Charmeleon", "Fire", R.drawable.charmeleon));
+        mPokemon.put("037", new Pokemon("Vulpix", "Fire", R.drawable.vulpix, "Generation I"));
+        mPokemon.put("077", new Pokemon("Ponyta", "Fire", R.drawable.ponyta, "Generation I"));
+        mPokemon.put("155", new Pokemon("Cyndaquil", "Fire", R.drawable.cyndaquil, "Generation II"));
 
         // Water types
         mTypes.add("Water");
-        mPokemon.put("007", new Pokemon("Squirtle", "Water", R.drawable.squirtle));
-        mPokemon.put("008", new Pokemon("Wartortle", "Water", R.drawable.wartortle));
-        mPokemon.put("009", new Pokemon("Blastoise", "Water", R.drawable.blastoise));
+        mPokemon.put("007", new Pokemon("Squirtle", "Water", R.drawable.squirtle, "Generation I"));
+        mPokemon.put("008", new Pokemon("Wartortle", "Water", R.drawable.wartortle, "Generation I"));
+        mPokemon.put("009", new Pokemon("Blastoise", "Water", R.drawable.blastoise, "Generation I"));
 
         // Electric tyeps
         mTypes.add("Electric");
-        mPokemon.put("025", new Pokemon("Pikachu", "Electric", R.drawable.pikachu));
-        mPokemon.put("026", new Pokemon("Raichu", "Electric", R.drawable.raichu));
-        mPokemon.put("135", new Pokemon("Jolteon", "Electric", R.drawable.jolteon));
+        mPokemon.put("025", new Pokemon("Pikachu", "Electric", R.drawable.pikachu, "Generation I"));
+        mPokemon.put("026", new Pokemon("Raichu", "Electric", R.drawable.raichu, "Generation I"));
+        mPokemon.put("135", new Pokemon("Jolteon", "Electric", R.drawable.jolteon, "Generation I"));
 
     }
 
