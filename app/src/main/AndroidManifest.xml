@@ -20,6 +20,12 @@
                 android:name="com.google.android.glass.VoiceTrigger"
                 android:resource="@xml/voice_trigger_launch_pokedex" />
         </activity>
+
+        <activity
+            android:name=".PokemonDetailActivity"
+            android:label="@string/title_activity_pokemon_detail" >
+        </activity>
+
     </application>
 
 </manifest>

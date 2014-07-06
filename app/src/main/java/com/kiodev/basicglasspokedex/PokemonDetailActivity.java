@@ -1,59 +1,34 @@
 package com.kiodev.basicglasspokedex;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.google.android.glass.app.Card;
-import com.google.android.glass.media.Sounds;
 import com.google.android.glass.widget.CardScrollAdapter;
 import com.google.android.glass.widget.CardScrollView;
 
 import java.util.ArrayList;
 
-
-public class MainActivity extends Activity {
-
-    public static final String TAG = MainActivity.class.getSimpleName();
+/**
+ * Pokemon Detail
+ */
+public class PokemonDetailActivity extends Activity {
 
     private ArrayList<Card> mCards;
     private CardScrollView mCardScrollView;
 
-    private PokemonTypes mPokemonTypes;
-    private ArrayList<String> mPokemonTypesList;
+    public static final String TAG = PokemonDetailActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mPokemonTypes = new PokemonTypes();
-        mPokemonTypesList = mPokemonTypes.getTypesList();
-
         createCards();
 
         mCardScrollView = new CardScrollView(this);
         CustomCardScrollAdapter adapter = new CustomCardScrollAdapter();
 
-        mCardScrollView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "TAP!");
-
-                // Play tap sound
-                AudioManager audio = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-                audio.playSoundEffect(Sounds.TAP);
-
-                // Kick off new Activity
-                Intent intent = new Intent(MainActivity.this, PokemonDetailActivity.class);
-                startActivity(intent);
-            }
-        });
 
         mCardScrollView.setAdapter(adapter);
 
@@ -61,7 +36,6 @@ public class MainActivity extends Activity {
 
         // Now set the content view, just like regular Android
         setContentView(mCardScrollView);
-
     }
 
     private void createCards() {
@@ -69,16 +43,15 @@ public class MainActivity extends Activity {
 
         Card card;
 
-        for(String type : mPokemonTypesList){
-            card = new Card(this);
-            card.setText(type);
-            card.setImageLayout(Card.ImageLayout.LEFT);
-            card.addImage(R.drawable.ic_launcher);
-            mCards.add(card);
-        }
+        card = new Card(this);
+        card.setText("POKEMON!!");
+        card.setImageLayout(Card.ImageLayout.LEFT);
+        card.addImage(R.drawable.ic_launcher);
+        mCards.add(card);
+
     }
 
-    private class CustomCardScrollAdapter extends CardScrollAdapter{
+    private class CustomCardScrollAdapter extends CardScrollAdapter {
         @Override
         public int getPosition( Object item ) {
             return mCards.indexOf(item);
@@ -109,4 +82,5 @@ public class MainActivity extends Activity {
             return mCards.get(position).getView(convertView, parent);
         }
     }
+
 }

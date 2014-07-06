@@ -4,5 +4,5 @@
     <string name="app_name">Pokedex</string>
     <string name="title_activity_main">Pokedex</string>
     <string name="glass_voice_trigger">Who\'s that Pokemon?</string>
-
+    <string name="title_activity_pokemon_detail">Pokemon Detail</string>
 </resources>
