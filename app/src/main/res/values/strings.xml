@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pokedex</string>
+    <string name="title_activity_main">Pokedex</string>
+    <string name="glass_voice_trigger">Who\'s that Pokemon?</string>
+
+</resources>
