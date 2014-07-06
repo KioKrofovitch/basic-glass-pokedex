@@ -1,7 +1,5 @@
 package com.kiodev.basicglasspokedex;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,37 +12,33 @@ public class PokemonIndex {
 
     private static PokemonIndex sPokemonIndex;
 
-    private HashMap<String, ArrayList<String>> mPokemon;
+    private HashMap<String, Pokemon> mPokemon;
     private ArrayList<String> mTypes;
 
     // Constructor
     private PokemonIndex (){
 
-        mPokemon = new HashMap<String, ArrayList<String>>();
+        mPokemon = new HashMap<String, Pokemon>();
+
         mTypes = new ArrayList<String>();
 
-        // Set Fire Pokemon
-        ArrayList<String> fire = new ArrayList<String>();
-        fire.add("Charmander");
-        fire.add("Charmeleon");
-        fire.add("Vulpix");
-        mPokemon.put("Fire", fire);
+        // Fire types
+        mTypes.add("Fire");
+        mPokemon.put("004", new Pokemon("Charmander", "Fire", R.drawable.charmander));
+        mPokemon.put("005", new Pokemon("Charmeleon", "Fire", R.drawable.charmeleon));
+        mPokemon.put("037", new Pokemon("Vulpix", "Fire", R.drawable.vulpix));
 
+        // Water types
+        mTypes.add("Water");
+        mPokemon.put("007", new Pokemon("Squirtle", "Water", R.drawable.squirtle));
+        mPokemon.put("008", new Pokemon("Wartortle", "Water", R.drawable.wartortle));
+        mPokemon.put("009", new Pokemon("Blastoise", "Water", R.drawable.blastoise));
 
-        // Set Water
-        ArrayList<String> water = new ArrayList<String>();
-        water.add("Squirtle");
-        water.add("Wartortle");
-        water.add("Blastoise");
-        mPokemon.put("Water", water);
-
-        // Set Types
-        for (String key : mPokemon.keySet()) {
-            Log.d(TAG, "key is: " + key);
-            mTypes.add(key);
-        }
-
-        Log.d(TAG, "mTypes is now: " + mTypes.toString());
+        // Electric tyeps
+        mTypes.add("Electric");
+        mPokemon.put("025", new Pokemon("Pikachu", "Electric", R.drawable.pikachu));
+        mPokemon.put("026", new Pokemon("Raichu", "Electric", R.drawable.raichu));
+        mPokemon.put("135", new Pokemon("Jolteon", "Electric", R.drawable.jolteon));
 
     }
 
@@ -57,12 +51,13 @@ public class PokemonIndex {
         return sPokemonIndex;
     }
 
-    public ArrayList<String> getTypes() {
+    public HashMap<String, Pokemon> getPokemon() {
+        return mPokemon;
+    }
+
+    public ArrayList<String> getTypes(){
         return mTypes;
     }
 
-    public ArrayList<String> getThesePokemon(String type){
-        return mPokemon.get(type);
-    }
 
 }

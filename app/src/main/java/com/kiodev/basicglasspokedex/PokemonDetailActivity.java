@@ -2,6 +2,7 @@ package com.kiodev.basicglasspokedex;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,15 +23,13 @@ public class PokemonDetailActivity extends Activity {
     private ArrayList<Card> mCards;
     private CardScrollView mCardScrollView;
 
-    private ArrayList<String> mThesePokemon;
     private String mType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String mType = getIntent().getStringExtra(EXTRA_POKEMON_TYPE);
-        mThesePokemon = PokemonIndex.get().getThesePokemon(mType);
+        mType = getIntent().getStringExtra(EXTRA_POKEMON_TYPE);
 
         createCards();
 
@@ -50,13 +49,21 @@ public class PokemonDetailActivity extends Activity {
 
         Card card;
 
-        for(String pokemon : mThesePokemon) {
-            card = new Card(this);
-            card.setText(pokemon);
-            card.setImageLayout(Card.ImageLayout.LEFT);
-            card.addImage(R.drawable.ic_launcher);
-            mCards.add(card);
+        Log.d(TAG, "Type we seek: " + mType);
+
+        for (String key : PokemonIndex.get().getPokemon().keySet()) {
+            Pokemon pk = PokemonIndex.get().getPokemon().get(key);
+            Log.d(TAG, "value type is: " + pk.getType());
+            if( pk.getType().equals(mType) ){
+                Log.d(TAG, "Adding " + pk.getName());
+                card = new Card(this);
+                card.setText(pk.getName());
+                card.setImageLayout(Card.ImageLayout.LEFT);
+                card.addImage(pk.getImage());
+                mCards.add(card);
+            }
         }
+
     }
 
     private class CustomCardScrollAdapter extends CardScrollAdapter {
